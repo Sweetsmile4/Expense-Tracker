@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="hero">
+        <h1>Expense Tracker</h1>
+        <p>Track income, manage expenses, and understand your financial balance.</p>
+      </header>
+
+      <section class="summary" aria-label="Financial Summary">
+        <article class="summary-card income">
+          <h2>Total Income</h2>
+          <p id="totalIncome">$0.00</p>
+        </article>
+        <article class="summary-card expense">
+          <h2>Total Expenses</h2>
+          <p id="totalExpense">$0.00</p>
+        </article>
+        <article class="summary-card net">
+          <h2>Net Income</h2>
+          <p id="netIncome">$0.00</p>
+        </article>
+      </section>
+
+      <section class="panel" aria-label="Transaction Form">
+        <h2>Add Transaction</h2>
+        <form id="transactionForm" novalidate>
+          <div class="form-grid">
+            <label class="field">
+              <span>Date</span>
+              <input type="date" id="date" required />
+            </label>
+
+            <label class="field">
+              <span>Description</span>
+              <input
+                type="text"
+                id="description"
+                maxlength="100"
+                placeholder="Salary, Groceries, Bus fare..."
+                required
+              />
+            </label>
+
+            <label class="field">
+              <span>Category</span>
+              <select id="category" required>
+                <option value="">Select a category</option>
+                <option value="Salary">Salary</option>
+                <option value="Freelance">Freelance</option>
+                <option value="Investments">Investments</option>
+                <option value="Food">Food</option>
+                <option value="Transportation">Transportation</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Utilities">Utilities</option>
+                <option value="Health">Health</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Other">Other</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Amount</span>
+              <input
+                type="number"
+                id="amount"
+                placeholder="0.00"
+                min="0.01"
+                step="0.01"
+                required
+              />
+            </label>
+          </div>
+
+          <p id="formError" class="error" role="alert" aria-live="polite"></p>
+
+          <div class="actions">
+            <button type="button" id="addIncomeBtn" class="btn income">Add Income</button>
+            <button type="button" id="addExpenseBtn" class="btn expense">Add Expense</button>
+            <button type="button" id="saveEditBtn" class="btn primary hidden">Save Changes</button>
+            <button type="button" id="cancelEditBtn" class="btn secondary hidden">Cancel</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel" aria-label="Transactions">
+        <div class="panel-head">
+          <h2>Transactions</h2>
+          <label class="filter">
+            <span>Filter by category:</span>
+            <select id="categoryFilter">
+              <option value="All">All</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="transactionList"></tbody>
+          </table>
+        </div>
+        <p id="emptyState" class="empty-state">No transactions added yet.</p>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
